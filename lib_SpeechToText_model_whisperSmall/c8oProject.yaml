@@ -1,0 +1,5 @@
+↑convertigo: 7.6.0.m006
+↓lib_SpeechToText_model_whisperSmall [core.Project]: 
+  comment: 'Whisper small speech recognition model (OpenAI Whisper, ONNX export onnx-community/whisper-small) for lib_SpeechToText_ui_ngx. Files only, no code: deploy it on the server that serves the apps using lib_SpeechToText_ui_ngx. Used on computers with WebGPU: q4 encoder and decoder on WebGPU. Licence Apache-2.0.'
+  corsOrigin: =Origin
+  version: 1.0.0

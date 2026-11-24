@@ -1,0 +1,9 @@
+/.gradle
+/build/
+/*/build/
+/*/_private/
+/*/.settings
+/*/.project
+
+# downloaded by the 'fetchModels' Gradle task from each project's models.json
+/*/DisplayObjects/models/

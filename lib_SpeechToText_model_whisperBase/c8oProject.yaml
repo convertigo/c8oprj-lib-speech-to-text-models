@@ -1,0 +1,5 @@
+↑convertigo: 7.6.0.m006
+↓lib_SpeechToText_model_whisperBase [core.Project]: 
+  comment: 'Whisper base speech recognition model (OpenAI Whisper, ONNX export onnx-community/whisper-base) for lib_SpeechToText_ui_ngx. Files only, no code: deploy it on the server that serves the apps using lib_SpeechToText_ui_ngx. Used on every device: q8 encoder and decoder on WebAssembly, or q4 encoder on WebGPU with the q8 decoder on WebAssembly. Licence Apache-2.0.'
+  corsOrigin: =Origin
+  version: 1.0.0
