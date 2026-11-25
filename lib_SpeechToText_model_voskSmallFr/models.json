@@ -1,0 +1,14 @@
+{
+	"comment": "Model archives served by this project from DisplayObjects/models/<target>. The build downloads each archive, checks its SHA-256, and repacks the zip as the .tar.gz that vosk-browser loads.",
+	"archives": [
+		{
+			"name": "vosk-model-small-fr-0.22",
+			"licence": "apache-2.0",
+			"source": "https://alphacephei.com/vosk/models",
+			"url": "https://alphacephei.com/vosk/models/vosk-model-small-fr-0.22.zip",
+			"size": 42233323,
+			"sha256": "cabf6180e177eb9b3a9a9d43a437bd5e549f3a7d09525e5d69a3fed787be12ad",
+			"target": "vosk/vosk-model-small-fr-0.22.tar.gz"
+		}
+	]
+}

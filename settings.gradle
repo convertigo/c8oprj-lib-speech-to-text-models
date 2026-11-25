@@ -3,3 +3,5 @@ rootProject.name = 'lib_SpeechToText_models'
 // one Convertigo project per model, so that a server deploys only the models it needs
 include 'lib_SpeechToText_model_whisperBase'
 include 'lib_SpeechToText_model_whisperSmall'
+include 'lib_SpeechToText_model_whisperTiny'
+include 'lib_SpeechToText_model_voskSmallFr'

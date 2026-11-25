@@ -1,0 +1,5 @@
+↑convertigo: 7.6.0.m006
+↓lib_SpeechToText_model_whisperTiny [core.Project]: 
+  comment: 'Whisper tiny speech recognition model (OpenAI Whisper, ONNX export onnx-community/whisper-tiny) for lib_SpeechToText_ui_ngx. Files only, no code: deploy it on the server that serves the apps using lib_SpeechToText_ui_ngx. Used when an app sets model ''tiny'': the fastest Whisper on devices without WebGPU, less accurate than base. q8 encoder and decoder on WebAssembly, or q4 encoder on WebGPU with the q8 decoder on WebAssembly. Licence Apache-2.0.'
+  corsOrigin: =Origin
+  version: 1.1.0

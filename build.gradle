@@ -16,7 +16,7 @@ buildscript {
 
 // The model files are not in git: in each model project, 'fetchModels' downloads the files listed in its
 // models.json, at their pinned revision, into DisplayObjects/models, and checks their SHA-256. 'car' runs it first.
-//   ./gradlew car                                        both CARs, in <project>/build
+//   ./gradlew car                                        every CAR, in <project>/build
 //   ./gradlew :lib_SpeechToText_model_whisperBase:car    one model
 static String sha256(File f) {
 	MessageDigest md = MessageDigest.getInstance('SHA-256')
@@ -41,7 +41,8 @@ subprojects {
 		// always runs: it checks the SHA-256 of every file itself and downloads only what is missing or different
 		outputs.upToDateWhen { false }
 		doLast {
-			new JsonSlurper().parse(spec).models.each { m ->
+			def json = new JsonSlurper().parse(spec)
+			(json.models ?: []).each { m ->
 				m.files.each { f ->
 					def target = new File(modelsDir, "${m.repo}/${f.path}")
 					if (target.exists() && sha256(target) == f.sha256) {
@@ -60,6 +61,36 @@ subprojects {
 					target.delete()
 					tmp.renameTo(target)
 				}
+			}
+			// archives (Vosk): a zip downloaded and checked, repacked as the .tar.gz that vosk-browser loads
+			(json.archives ?: []).each { a ->
+				def zip = layout.buildDirectory.file("downloads/${a.name}.zip").get().asFile
+				def marker = layout.buildDirectory.file("downloads/${a.name}.packed").get().asFile
+				def target = new File(modelsDir, a.target)
+				if (target.exists() && marker.exists() && marker.text == a.sha256) {
+					return
+				}
+				if (!(zip.exists() && sha256(zip) == a.sha256)) {
+					zip.parentFile.mkdirs()
+					println "Downloading ${a.url}"
+					def tmp = new File(zip.path + '.part')
+					new URI(a.url).toURL().withInputStream { input -> tmp.withOutputStream { out -> out << input } }
+					def hash = sha256(tmp)
+					if (hash != a.sha256) {
+						tmp.delete()
+						throw new GradleException("SHA-256 mismatch for ${a.url}: ${hash}")
+					}
+					zip.delete()
+					tmp.renameTo(zip)
+				}
+				def unpacked = layout.buildDirectory.dir("downloads/${a.name}").get().asFile
+				project.delete(unpacked)
+				ant.unzip(src: zip, dest: unpacked)
+				target.parentFile.mkdirs()
+				target.delete()
+				ant.tar(destfile: target, compression: 'gzip', basedir: unpacked)
+				project.delete(unpacked)
+				marker.text = a.sha256
 			}
 		}
 	}

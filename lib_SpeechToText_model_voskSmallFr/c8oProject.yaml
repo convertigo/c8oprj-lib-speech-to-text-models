@@ -1,0 +1,5 @@
+↑convertigo: 7.6.0.m006
+↓lib_SpeechToText_model_voskSmallFr [core.Project]: 
+  comment: 'Vosk small French speech recognition model (Alpha Cephei vosk-model-small-fr-0.22, Kaldi) for lib_SpeechToText_ui_ngx, as the .tar.gz archive the browser runtime (vosk-browser) loads. Files only, no code: deploy it on the server that serves the apps using lib_SpeechToText_ui_ngx. Used when an app sets model ''vosk'' with French: streaming recognition on WebAssembly, light on slow devices, less accurate than Whisper. Licence Apache-2.0.'
+  corsOrigin: =Origin
+  version: 1.1.0
